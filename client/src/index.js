@@ -7,11 +7,13 @@ import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks'
 import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
+import Mutations from "./graphql/mutations";
 
-import Mutations from "./graphql/mutations"
-const { VERIFY_USER } = Mutations
+
+const { VERIFY_USER } = Mutations;
 
 const token = localStorage.getItem("auth-token");
 
@@ -32,6 +34,10 @@ const errorLink = onError(({ graphQLErrors }) => {
 });
 
 const client = new ApolloClient({
+  resolvers: {},
+  clientState: {
+    defaults: {},
+  },
   link: ApolloLink.from([errorLink, httpLink]),
   cache,
   onError: ({ networkError, graphQLErrors }) => {
@@ -42,9 +48,22 @@ const client = new ApolloClient({
 
 cache.writeData({
   data: {
-    isLoggedIn: Boolean(token)
+    isLoggedIn: Boolean(token),
+    _id: "",
+    results: [],
+    viewport: ""
   }
 });
+
+const Root = () => {
+  return (
+    <ApolloProvider client={client}>
+      <ApolloHooksProvider client={client}>
+        <App />
+      </ApolloHooksProvider>
+    </ApolloProvider>
+  );
+};
 
 // then if we do have a token we'll go through with our mutation
 if (token) {
@@ -55,21 +74,20 @@ if (token) {
     .then(({ data }) => {
       cache.writeData({
         data: {
-          isLoggedIn: data.verifyUser.loggedIn
+          isLoggedIn: data.verifyUser.loggedIn,
+          _id: data.verifyUser._id,
+          results: [],
+          viewport: ""
         }
       });
+      ReactDOM.render(<Root />, document.getElementById('root'));
     });
+} else {
+  ReactDOM.render(<Root />, document.getElementById('root'));
 }
 
-const Root = () => {
-  return (
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  );
-};
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

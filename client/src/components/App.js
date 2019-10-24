@@ -1,30 +1,54 @@
 import React from "react";
 // import React, { Component } from "react";
 // import gql from "graphql-tag";
-// import { Query } from "react-apollo";
-import { HashRouter, Switch, Route } from 'react-router-dom';
-import HouseIndex from "./houses/HouseIndex";
-import Login from "./Login";
-import Register from "./Register";
+import { ApolloConsumer } from "react-apollo";
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import HomeIndex from "./homes/HomeIndex";
+// import Login from "./Login";
+// import Register from "./Register";
 import AuthRoute from '../util/route_util'
-import Nav from "./Nav";
-import HouseDetail from './houses/HouseDetail';
-import CreateHouse from './houses/CreateHouse';
+import Nav from "./nav_bar/nav";
+import HomeDetail from './homes/HomeDetail';
+import CreateHome from './homes/CreateHome';
+import SearchBar from './search/SearchBar';
+import UserProfile from "./homes/UserProfile";
 
-const App = () => {
+
+import MapSearchBar from "./map/map_search";
+import DropdownMenu from './search/DropdownMenu';
+import Watchlist from './watchlist/watchlist'
+// import UpdateHome from "./homes/UpdateHome";
+
+require('dotenv').config();
+
+const App = (props) => {
   return (
     <HashRouter>
-      <div>
-        <Nav />
-        <h1>zBay Store</h1>
+      <ApolloConsumer >
+      {(cache) => (
+      <div className="main">
+
+          <Nav />
+          <Route exact path="/home" component={SearchBar}/>
+
+        <DropdownMenu />
         <Switch>
-          <Route exact path="/houses/new" component={CreateHouse} />
-          <Route exact path="/houses/:id" component={HouseDetail} />
-          <AuthRoute exact path="/register" component={Register} routeType="auth" />
-          <AuthRoute exact path="/login" component={Login} routeType="auth" />
-          <Route path="/" component={HouseIndex} />
+          <AuthRoute exact path="/homes/new" component={CreateHome} routeType="protected"/>
+          {/* <AuthRoute exact path="/homes/update/:id" component={UpdateHome} routeType="protected" /> */}
+          <Route exact path="/homes/:id" component={HomeDetail} />
+              {/* <AuthRoute exact path="/register" component={Register} routeType="auth" /> */}
+              {/* <AuthRoute exact path="/login" component={Login} routeType="auth" /> */}
+
+          <AuthRoute exact path="/user" component={UserProfile} routeType="protected" />
+
+          <Route exact path="/home" component={() => <HomeIndex cache={cache} />} />
+          <Route exact path="/" component={() => <MapSearchBar />} />
+          <Route exact path="/watchlist" component={Watchlist} />
+          <Redirect to="/" />
         </Switch>
       </div>
+      )}
+      </ApolloConsumer>
     </HashRouter>
   );
 };

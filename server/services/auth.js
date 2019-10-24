@@ -51,7 +51,7 @@ const register = async data => {
     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 
     // then return our created token, set loggedIn to be true, null their password, and send the rest of the user
-    return { token, loggedIn: true, ...user._doc, password: null };
+    return { token, _id: user._id, loggedIn: true, ...user._doc, password: null };
 
   } catch (err) {
     throw err;
@@ -79,7 +79,7 @@ const login = async data => {
 
     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 
-    return { token, loggedIn: true, ...user._doc, password: null };
+    return { token, _id: user._id, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
     throw err;
   }
@@ -112,13 +112,15 @@ const verifyUser = async data => {
 
     // then we try to use the User with the id we just decoded
     // making sure we await the response
+    let currentUser;
     const loggedIn = await User.findById(id).then(user => {
+      currentUser = user ? user : null;
       return user ? true : false;
     });
 
-    return { loggedIn };
+    return { loggedIn, _id: currentUser._id };
   } catch (err) {
-    return { loggedIn: false };
+    return { loggedIn: false, _id: null };
   }
 };
 

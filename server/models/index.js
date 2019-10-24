@@ -1,3 +1,6 @@
 require("./User");
 require("./Category");
-require("./House");
+require("./Home");
+require("./Bid");
+require("./Image");
+require("./Watchlist");

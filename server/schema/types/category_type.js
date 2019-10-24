@@ -6,14 +6,14 @@ const Category = mongoose.model("category");
 
 const CategoryType = new GraphQLObjectType({
   name: "CategoryType",
-  // remember we wrap the fields in a thunk to avoid circular dependency issues
+
   fields: () => ({
     _id: { type: GraphQLID },
     name: { type: GraphQLString },
-    houses: {
-      type: new GraphQLList(require('./house_type')),
+    homes: {
+      type: new GraphQLList(require('./home_type')),
       resolve(parentValue) {
-        return Category.findHouses(parentValue._id)
+        return Category.findHomes(parentValue._id)
       }
     }
   })

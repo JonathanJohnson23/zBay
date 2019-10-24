@@ -1,0 +1,362 @@
+
+.home-show-container{
+    /* background-color: green; */
+    z-index: 3;
+    margin: 0 auto;
+    /* margin-top: 160px; */
+    width: 90%;
+    height: 77vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.back-to-home-link{
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+.added-success-link{
+    color: rgb(108, 204, 108);
+    font-weight: 700;
+}
+
+.home-show{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid blue; */
+}
+
+.show-pics-col{
+    width: 54%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: purple; */
+    /* border: 1px solid blue; */
+}
+
+.show-photo{
+    height: 70%;
+    width: 100%
+}
+
+.show-high-bid{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+.show-high-bid-info{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 3px;
+    background-color: rgb(58, 58, 241);
+}
+
+.current-high-bidder-header{
+    font-weight: 700;
+
+}
+
+.current-high-bidder{
+    font-size: 25px; 
+    /* height: 40px; */
+    color: whitesmoke;
+    font-weight: 700;
+}
+
+.high-bid{
+    font-size: 25px;
+    color: whitesmoke;
+    font-weight: 700;
+}
+
+.show-bid-item{
+    margin: 0 auto;
+    height: 60px;
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.show-bid-item h4{
+    margin-right: 10px;
+}
+
+.show-info-col{
+    width: 44%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    /* border: 1px solid blue; */
+    /* background-color: pink; */
+}
+
+.show-bidding-box{
+    height: 22%;
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid blue; */
+}
+
+.enter-bid-header{
+    font-weight: 700;
+}
+
+.show-info-box{
+    height: 60%;
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* border: 1px solid blue; */
+    overflow: hidden;
+    /* overflow-y: scroll; */
+}
+
+.show-info-box::-webkit-scroll{
+    width: 0;
+}
+
+.show-info-text{
+    margin: 15px 0;
+}
+
+.bid-form-container{
+    width: 99%;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.bid-form{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.bid-input{
+    width: 200px;
+    height: 20px;
+    
+    border-radius: 2px;
+    font-size: 20px;
+}
+
+.bid-submit{
+    width: 200px;
+    height: 50px;
+    color: whitesmoke;
+    background-color: rgb(11, 70, 230);
+    border-radius: 2px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.bid-success{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.loading{
+    margin-top: 50vh;
+    margin-left: 50vw;
+}
+
+.auction-alert-text{
+    color: red;
+    border: 1px solid gray;
+    border-radius: 2px;
+    padding: 8px 10px;
+    font-weight: 700;
+}
+
+
+.home-detail-slideshow-container {
+	position: relative;
+    margin: 0 auto;
+    width: 100%;
+    background: #fff;
+	height: 700px;
+	overflow: hidden;
+	margin-bottom: 15px;	
+}
+.image-slide img {
+	height: 500px;
+	width: 500px;
+}
+
+.slick-list {
+	height: 100%;
+}
+
+.slick-prev {
+    visibility: hidden;
+  	display: block;
+
+	font-size: 30px;
+	line-height: 1.5;
+	top: 45%;
+	width: 50px;
+	height: 50px;
+	transform: translate(0,-50%);
+	cursor: pointer;
+
+	color:blue;
+	border: none;
+	position: absolute;
+	left: 10px;
+	padding: 0;
+	z-index: 15
+}
+
+.slick-next {
+  	visibility: hidden;
+	display: block;
+
+	font-size: 30px;
+	line-height: 1.5;
+	top: 45%;
+	width: 50px;
+	height: 50px;
+	transform: translate(0,-50%);
+	cursor: pointer;
+
+	color:blue;
+	border: none;
+	position: absolute;
+	right: -15px;
+	padding: 0;
+	z-index:15
+ 
+}
+
+
+.slick-arrow.slick-prev:after {
+	content: '❮'; 
+	visibility: visible;
+	display: block;
+
+	font-size: 40px;
+	line-height: 1.5;
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	transform: translate(0,-50%);
+	cursor: pointer;
+
+	color:white;
+	border: none;
+	position: absolute;
+	left: 0px;
+	padding: 0;
+	z-index:100
+
+}
+
+.slick-arrow.slick-next:after {
+	content:'❯'; 
+	visibility: visible;
+	display: block;
+
+	font-size: 40px;
+	line-height: 1.5;
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	transform: translate(0,-50%);
+	cursor: pointer;
+
+	color:white;
+	border: none;
+	position: absolute;
+	right: 30px;
+	padding: 0;
+	z-index:100
+}
+
+.slick-slide {
+	margin: 0px 2px;
+	float: left;
+	height: auto;
+	overflow: hidden;
+
+}
+
+.slick-slide img {
+    width:500px;
+    height: 500px;
+}
+
+.detail-slider img {
+	height: 500px;
+}
+
+.index-slider img {
+  height: 170px;
+}
+.show-home-location > h5{
+    margin-left: 10px;
+}
+.show-home-location{
+    display: flex;
+}
+.show-home-info{
+    display: flex;
+    width: 100%;
+    height: 59%;
+}
+.show-home-info > h5{
+    margin: 0 10px;
+}
+.show-home-bio > h1{
+    text-align: center;
+}
+.show-home-wrapper{
+    height: 18%;
+    padding: 20px 0;
+}
+.show-home-bio{
+    padding: 20px;
+}
+.show-info-title{
+    font-family: "Ivar Headline","Times New Roman",serif;
+    font-size: 42px;
+    text-decoration: underline;
+    margin: 15px 0 30px 0;
+}

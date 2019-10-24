@@ -1,0 +1,28 @@
+@import "nav.css";
+@import "searchbar.css";
+@import "home-detail.css";
+@import "home-create.css";
+@import "modal.css";
+@import "dropdown-menu.css";
+@import "watchlist.css";
+@import "profile.css";
+
+*{
+    font-family: Open Sans, Gotham, gotham, Tahoma, Geneva, sans-serif
+}
+
+button:focus{
+    outline: none;
+}
+
+input:focus{
+    outline: none;
+}
+
+form:focus{
+    outline: none;
+}
+
+div:focus{
+    outline: none;
+}
