@@ -9,12 +9,12 @@ import Timer from '../timer/timer';
 import { Image } from 'cloudinary-react';
 import AddButtonContainer from "../watchlist/AddButtonContainer";
 import Loading from "../loading/loading"
-import SearchClear from '../search/SearchClear'
-const { FETCH_HOME, FETCH_BIDS } = Queries;
-const { CREATE_BID } = Mutations;
-// const { CREATE_BID, ADD_HOME } = Mutations;
 
+
+const { FETCH_HOME, FETCH_BIDS, IS_LOGGED_IN } = Queries;
+const { CREATE_BID } = Mutations;
 const token2 = process.env.REACT_APP_TOKEN2
+
 
 class HomeDetail extends React.Component {
   constructor(props){
@@ -26,8 +26,6 @@ class HomeDetail extends React.Component {
     }
   }
 
- 
-  // just some useless comments here
 
   update(field){
     return (e) => {
@@ -73,6 +71,8 @@ class HomeDetail extends React.Component {
       slidesToScroll: 1,
       className: "detail-slider",
       adaptiveHeight: true,
+      fade: true,
+      cssEase: 'linear'
     }
 
     return (
@@ -138,7 +138,7 @@ class HomeDetail extends React.Component {
                         <div className="bid-form-container">
                           <form className="bid-form" onSubmit={e => this.handleSubmit(e, createBid)}>
                             <h3 className="enter-bid-header">Enter a bid for this home:</h3>
-                            <input className="bid-input" type="number" value={this.state.amount} onChange={this.update('amount')}/>
+                            <input className="bid-input" type="number" value={this.state.amount} onChange={this.update('amount')}/>&nbsp;&nbsp;
                             <input className="bid-submit" type="submit" value="Bid Now"/>
                           </form>
                           <div className="bid-success">
@@ -171,8 +171,19 @@ class HomeDetail extends React.Component {
                       <h2 className="show-info-text">{data.home.description}</h2>
                     </div>
                   </div>
-                  <AddButtonContainer homeId={data.home._id} />
-
+                  <Query query={IS_LOGGED_IN}>
+                    {(response) => {
+                      if (response.data.isLoggedIn) {
+                        return (
+                          <AddButtonContainer homeId={data.home._id} />
+                        )
+                      } else {
+                        return (
+                          <button className="add-watchlist">Log in to use Watchlist</button>
+                        )
+                      }
+                    }}
+                  </Query>
                 </div>
               </div>
                <Link className="back-to-home-link" to="/">Back to Home</Link>
@@ -182,7 +193,7 @@ class HomeDetail extends React.Component {
           );
         }}
       </Query>
-      {/* <SearchClear /> */}
+    
       </div>
     );
   };

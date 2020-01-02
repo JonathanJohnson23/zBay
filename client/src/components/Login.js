@@ -14,15 +14,15 @@ class Login extends Component {
       errors: ""
     };
   }
-
+ 
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
 
   updateCache(client, { data }) {
-
+    // debugger;
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { isLoggedIn: data.login.loggedIn, _id: data.login._id, modalOpen: data.login.loggedIn ? false : true }
     });
   }
 
